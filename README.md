@@ -46,3 +46,13 @@ QuickCare is a hospital finder project that helps users find hospitals based on 
 ---
 
 Made while learning and exploring web development and Java.
+## 📸 Screenshots
+
+### Login Page
+![QuickCare Login](login.png)
+
+### Hospital Finder
+![QuickCare Hospital Finder](hospital.png)
+
+### Hospital Map
+![QuickCare Map](map.png)
