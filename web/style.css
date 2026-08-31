@@ -1,0 +1,643 @@
+:root {
+  --bg: #06162a;
+  --panel: rgba(10, 34, 62, 0.86);
+  --panel-strong: #0d2a4b;
+  --line: rgba(86, 162, 255, 0.35);
+  --text: #f5f9ff;
+  --muted: #bfd0e8;
+  --cyan: #18d9e8;
+  --blue: #1764d8;
+  --red: #ef3151;
+  --gold: #ffc928;
+  --green: #42d783;
+  --purple: #8f64e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(24, 217, 232, 0.15), transparent 34rem),
+    linear-gradient(135deg, #071f3c, var(--bg));
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+.app-shell {
+  width: min(1500px, calc(100% - 32px));
+  margin: 0 auto;
+  padding-bottom: 28px;
+}
+
+.hero {
+  position: relative;
+  min-height: 230px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(2, 12, 25, 0.12), rgba(2, 12, 25, 0.84) 40%, rgba(2, 12, 25, 0.76)),
+    url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+}
+
+.top-bar {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand,
+.admin-link,
+.back-link {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+}
+
+.brand-icon,
+.pulse-icon {
+  display: grid;
+  place-items: center;
+  color: var(--cyan);
+  border: 3px solid var(--cyan);
+}
+
+.brand-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.admin-link,
+.back-link {
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(6, 22, 42, 0.72);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 52px 340px 32px;
+}
+
+.pulse-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 10px;
+  border-radius: 18px;
+  font-size: 2rem;
+}
+
+.hero-copy h1,
+.hero-copy h2,
+.hero-copy p {
+  margin: 0;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.9rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.hero-copy h2 {
+  margin-top: 8px;
+  color: var(--cyan);
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.hero-copy p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.emergency-card {
+  position: absolute;
+  top: 26px;
+  right: 8px;
+  z-index: 2;
+  width: min(300px, 34vw);
+  padding: 18px;
+  border: 2px solid var(--red);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(85, 12, 35, 0.94), rgba(15, 10, 28, 0.94));
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
+}
+
+.ambulance {
+  float: left;
+  margin-right: 12px;
+  font-size: 2.4rem;
+}
+
+.emergency-card h3 {
+  margin: 4px 0 6px;
+  color: #ff4f66;
+  text-transform: uppercase;
+}
+
+.emergency-card p {
+  margin: 0 0 16px;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.emergency-card button,
+.search-btn,
+.card button,
+.login-card button {
+  min-height: 44px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-weight: 800;
+}
+
+.emergency-card button {
+  width: 100%;
+  background: var(--red);
+}
+
+.search-panel,
+.results-panel,
+.map-panel,
+.features,
+.login-card,
+.admin-preview {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.search-panel {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 0.9fr 1fr;
+  gap: 20px;
+  align-items: end;
+  margin-top: -1px;
+  padding: 22px;
+}
+
+label span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+select,
+input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid #c8d9f3;
+  border-radius: 8px;
+  background: #fff;
+  color: #071f3c;
+}
+
+.search-btn {
+  background: linear-gradient(135deg, var(--cyan), #12a3dc);
+}
+
+.loading {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.loading.active::before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 4px dotted var(--cyan);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.results-panel {
+  margin-top: 14px;
+  padding: 18px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.section-heading h3 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.section-heading h3 strong {
+  color: var(--cyan);
+}
+
+.section-heading span {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(23, 100, 216, 0.45);
+  font-weight: 800;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(190px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(18, 55, 93, 0.96), rgba(11, 37, 69, 0.96));
+}
+
+.image-wrap {
+  position: relative;
+  aspect-ratio: 16 / 8;
+  overflow: hidden;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: #d79b00;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.card-body {
+  padding: 14px;
+}
+
+.card h4 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.address,
+.reviews {
+  margin: 7px 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.rating {
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.rating span {
+  color: var(--gold);
+}
+
+.hospital-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 0;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.hospital-meta small {
+  display: block;
+  color: var(--muted);
+}
+
+.hospital-meta strong {
+  display: block;
+  margin-top: 3px;
+}
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 0.75fr;
+  gap: 10px;
+}
+
+.map-btn {
+  border: 1px solid var(--cyan);
+  background: transparent;
+  color: var(--cyan);
+}
+
+.details-btn {
+  background: var(--blue);
+}
+
+.map-panel {
+  margin-top: 16px;
+  padding: 18px;
+}
+
+.map-panel .section-heading {
+  align-items: flex-start;
+}
+
+.map-panel p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.map-panel a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--cyan);
+  border-radius: 8px;
+  color: var(--cyan);
+  text-decoration: none;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.map-panel iframe {
+  width: 100%;
+  height: 360px;
+  display: block;
+  border: 0;
+  border-radius: 8px;
+  background: #dce6ef;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 16px;
+  padding: 22px;
+}
+
+.features article {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+}
+
+.feature-icon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.shield {
+  background: rgba(24, 217, 232, 0.22);
+  color: var(--cyan);
+}
+
+.beds {
+  background: rgba(66, 215, 131, 0.2);
+  color: var(--green);
+}
+
+.location {
+  background: rgba(143, 100, 232, 0.22);
+  color: var(--purple);
+}
+
+.care {
+  background: rgba(239, 49, 81, 0.2);
+  color: #ff5d78;
+}
+
+.features h4,
+.features p {
+  margin: 0;
+}
+
+.features p {
+  margin-top: 5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.login-page {
+  width: min(1000px, calc(100% - 32px));
+  min-height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-content: center;
+  position: relative;
+}
+
+.back-link {
+  position: absolute;
+  top: 24px;
+  left: 0;
+}
+
+.login-card,
+.admin-preview {
+  padding: 28px;
+}
+
+.login-badge {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  border: 3px solid var(--cyan);
+  color: var(--cyan);
+  font-size: 2.4rem;
+}
+
+.login-card h1,
+.admin-preview h2 {
+  margin: 18px 0 8px;
+}
+
+.login-card p,
+.admin-preview span {
+  color: var(--muted);
+}
+
+.login-card form {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.login-card button {
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+}
+
+.login-message {
+  min-height: 24px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.login-message.success {
+  color: var(--green);
+}
+
+.login-message.error {
+  color: #ff758b;
+}
+
+.admin-preview {
+  align-self: center;
+}
+
+.admin-stats {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.admin-stats article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-stats strong {
+  color: var(--cyan);
+  font-size: 2rem;
+}
+
+@media (max-width: 1050px) {
+  .hero-copy {
+    padding-right: 220px;
+    padding-left: 220px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell,
+  .login-page {
+    width: min(100% - 20px, 560px);
+  }
+
+  .hero {
+    min-height: 470px;
+    align-items: start;
+  }
+
+  .top-bar {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    padding: 14px 0;
+  }
+
+  .hero-copy {
+    padding: 28px 8px 18px;
+  }
+
+  .emergency-card {
+    position: relative;
+    width: calc(100% - 16px);
+    top: auto;
+    right: auto;
+    margin: 10px auto 18px;
+  }
+
+  .search-panel,
+  .features,
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

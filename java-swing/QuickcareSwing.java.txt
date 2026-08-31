@@ -1,0 +1,302 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.URI;
+import java.util.*;
+
+class Hospital {
+    String name, area, distance;
+    double rating;
+    int reviews, beds;
+
+    Hospital(String name, double rating, int reviews,
+             int beds, String distance, String area) {
+
+        this.name = name;
+        this.rating = rating;
+        this.reviews = reviews;
+        this.beds = beds;
+        this.distance = distance;
+        this.area = area;
+    }
+}
+
+public class QuickCareSwing extends JFrame {
+
+    JComboBox<String> cityBox, specialtyBox;
+    JTextArea resultArea;
+    JLabel foundLabel;
+
+    HashMap<String, ArrayList<Hospital>> hospitalData =
+            new HashMap<>();
+
+    public QuickCareSwing() {
+
+        setTitle("QuickCare Hospital Finder");
+        setSize(700, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Panel
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+
+        JLabel cityLabel = new JLabel("Select City:");
+        cityLabel.setBounds(30, 30, 100, 25);
+        panel.add(cityLabel);
+
+        String cities[] = {
+                "Delhi", "Mumbai",
+                "Bangalore", "Chennai",
+                "Kolkata"
+        };
+
+        cityBox = new JComboBox<>(cities);
+        cityBox.setBounds(140, 30, 150, 30);
+        panel.add(cityBox);
+
+        JLabel specLabel =
+                new JLabel("Specialty:");
+        specLabel.setBounds(320, 30, 100, 25);
+        panel.add(specLabel);
+
+        String specialties[] = {
+                "General",
+                "Cardiology",
+                "Neurology",
+                "Orthopedic"
+        };
+
+        specialtyBox =
+                new JComboBox<>(specialties);
+        specialtyBox.setBounds(400, 30, 150, 30);
+        panel.add(specialtyBox);
+
+        JButton searchBtn =
+                new JButton("Search Hospitals");
+        searchBtn.setBounds(200, 80, 180, 35);
+        panel.add(searchBtn);
+
+        JButton emergencyBtn =
+                new JButton("Emergency");
+        emergencyBtn.setBounds(400, 80, 140, 35);
+        panel.add(emergencyBtn);
+
+        foundLabel =
+                new JLabel("Hospitals Found: 0");
+        foundLabel.setBounds(30, 130, 200, 30);
+        panel.add(foundLabel);
+
+        resultArea = new JTextArea();
+        resultArea.setEditable(false);
+
+        JScrollPane scrollPane =
+                new JScrollPane(resultArea);
+        scrollPane.setBounds(30, 170, 620, 250);
+        panel.add(scrollPane);
+
+        add(panel);
+
+        loadHospitalData();
+
+        // Search Button
+        searchBtn.addActionListener(e ->
+                searchHospitals());
+
+        // Emergency Button
+        emergencyBtn.addActionListener(e ->
+                findEmergencyHospital());
+
+        setVisible(true);
+    }
+
+    // Load hospital data
+    void loadHospitalData() {
+
+        ArrayList<Hospital> delhi =
+                new ArrayList<>();
+
+        delhi.add(new Hospital(
+                "AIIMS Delhi",
+                4.9, 513,
+                20,
+                "2.5 km",
+                "Ansari Nagar, New Delhi"));
+
+        delhi.add(new Hospital(
+                "Fortis Escorts Heart Institute",
+                4.7, 423,
+                15,
+                "4.1 km",
+                "Okhla Road, New Delhi"));
+
+        hospitalData.put("Delhi", delhi);
+
+        ArrayList<Hospital> mumbai =
+                new ArrayList<>();
+
+        mumbai.add(new Hospital(
+                "Kokilaben Hospital",
+                4.8, 487,
+                16,
+                "3.4 km",
+                "Andheri West, Mumbai"));
+
+        mumbai.add(new Hospital(
+                "Lilavati Hospital",
+                4.6, 352,
+                13,
+                "5.8 km",
+                "Bandra West, Mumbai"));
+
+        hospitalData.put("Mumbai", mumbai);
+
+        ArrayList<Hospital> bangalore =
+                new ArrayList<>();
+
+        bangalore.add(new Hospital(
+                "Manipal Hospital",
+                4.7, 401,
+                22,
+                "4.0 km",
+                "Old Airport Road"));
+
+        hospitalData.put("Bangalore",
+                bangalore);
+    }
+
+    // Search hospitals
+    void searchHospitals() {
+
+        String city =
+                cityBox.getSelectedItem()
+                        .toString();
+
+        String specialty =
+                specialtyBox.getSelectedItem()
+                        .toString();
+
+        ArrayList<Hospital> hospitals =
+                hospitalData.get(city);
+
+        resultArea.setText("");
+
+        if (hospitals == null ||
+                hospitals.size() == 0) {
+
+            resultArea.setText(
+                    "No Hospitals Found");
+            foundLabel.setText(
+                    "Hospitals Found: 0");
+            return;
+        }
+
+        foundLabel.setText(
+                "Hospitals Found: "
+                        + hospitals.size());
+
+        resultArea.append(
+                "Top Hospitals in "
+                        + city
+                        + " for "
+                        + specialty
+                        + "\n\n");
+
+        for (Hospital h : hospitals) {
+
+            resultArea.append(
+                    "Hospital: "
+                            + h.name + "\n");
+
+            resultArea.append(
+                    "Area: "
+                            + h.area + "\n");
+
+            resultArea.append(
+                    "Rating: "
+                            + h.rating + "\n");
+
+            resultArea.append(
+                    "Reviews: "
+                            + h.reviews + "\n");
+
+            resultArea.append(
+                    "Beds Available: "
+                            + h.beds + "\n");
+
+            resultArea.append(
+                    "Distance: "
+                            + h.distance + "\n");
+
+            resultArea.append(
+                    "-------------------------\n");
+        }
+    }
+
+    // Emergency hospital
+    void findEmergencyHospital() {
+
+        String city =
+                cityBox.getSelectedItem()
+                        .toString();
+
+        ArrayList<Hospital> hospitals =
+                hospitalData.get(city);
+
+        if (hospitals == null ||
+                hospitals.size() == 0) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No emergency hospital found");
+            return;
+        }
+
+        Hospital emergency =
+                hospitals.get(0);
+
+        for (Hospital h : hospitals) {
+
+            if (h.beds >
+                    emergency.beds) {
+
+                emergency = h;
+            }
+        }
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Emergency Hospital Found:\n"
+                        + emergency.name
+                        + "\nBeds: "
+                        + emergency.beds);
+
+        openMap(emergency);
+    }
+
+    // Open Google Map
+    void openMap(Hospital h) {
+
+        try {
+
+            String query =
+                    h.name + ", " + h.area;
+
+            String url =
+                    "https://www.google.com/maps/search/?api=1&query="
+                            + query.replace(" ", "%20");
+
+            Desktop.getDesktop().browse(
+                    new URI(url));
+
+        } catch (Exception e) {
+
+            System.out.println(e);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        new QuickCareSwing();
+    }
+}

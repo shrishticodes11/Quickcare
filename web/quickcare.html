@@ -1,0 +1,123 @@
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>QuickCare Finder</title>  
+  <link rel="preconnect" href="https://fonts.googleapis.com">  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">  
+  <link rel="stylesheet" href="style.css">  
+</head>  
+<body>  
+  <main class="app-shell">  
+    <section class="hero">  
+      <div class="hero-image" aria-hidden="true"></div>  <nav class="top-bar">  
+    <a class="brand" href="quickcare.html">  
+      <span class="brand-icon">♡</span>  
+      <span>QuickCare</span>  
+    </a>  
+    <a class="admin-link" href="index.html">Logout</a>  
+  </nav>  
+
+  <div class="hero-copy">  
+    <div class="pulse-icon">♡</div>  
+    <h1>QuickCare</h1>  
+    <h2>Hospital Finder</h2>  
+    <p>Find the best hospitals near you for fast and reliable care.</p>  
+  </div>  
+
+  <aside class="emergency-card">  
+    <div class="ambulance">🚑</div>  
+    <div>  
+      <h3>Emergency</h3>  
+      <p>Get the best hospital in your selected city.</p>  
+    </div>  
+    <button type="button" id="emergencyBtn">Find Emergency Hospital</button>  
+  </aside>  
+</section>  
+
+<section class="search-panel" aria-label="Hospital search">  
+  <label>  
+    <span>Select City</span>  
+    <select id="city">  
+      <option>Delhi</option>  
+      <option>Mumbai</option>  
+      <option>Bangalore</option>  
+      <option>Chennai</option>  
+      <option>Kolkata</option>  
+    </select>  
+  </label>  
+
+  <label>  
+    <span>Select Speciality</span>  
+    <select id="specialty">  
+      <option>Cardiologist</option>  
+      <option>Neurologist</option>  
+      <option>Orthopedic</option>  
+      <option>Pediatrician</option>  
+      <option>Emergency Care</option>  
+    </select>  
+  </label>  
+
+  <button type="button" class="search-btn" onclick="searchHospitals()">⌕ Search</button>  
+  <div id="loading" class="loading" aria-live="polite"></div>  
+</section>  
+
+<section class="results-panel">  
+  <div class="section-heading">  
+    <h3 id="resultTitle">Top Hospitals</h3>  
+    <span id="foundCount">Search to view hospitals</span>  
+  </div>  
+  <div class="cards" id="cards"></div>  
+</section>  
+
+<section class="map-panel" id="mapPanel" aria-label="Hospital location map">  
+  <div class="section-heading">  
+    <div>  
+      <h3 id="mapTitle">Hospital Location</h3>  
+      <p id="mapAddress">Click View on Map to show the hospital location here.</p>  
+    </div>  
+    <a id="mapLink" href="https://www.google.com/maps" target="_blank" rel="noopener">Open in Google Maps</a>  
+  </div>  
+  <iframe  
+    id="hospitalMap"  
+    title="Selected hospital map"  
+    loading="lazy"  
+    referrerpolicy="no-referrer-when-downgrade"  
+    src="https://www.google.com/maps?q=AIIMS%20Delhi%2C%20Ansari%20Nagar%2C%20New%20Delhi&output=embed">  
+  </iframe>  
+</section>  
+
+<section class="features" aria-label="QuickCare features">  
+  <article>  
+    <span class="feature-icon shield">✓</span>  
+    <div>  
+      <h4>Verified Hospitals</h4>  
+      <p>Trusted hospitals with checked details.</p>  
+    </div>  
+  </article>  
+  <article>  
+    <span class="feature-icon beds">▰</span>  
+    <div>  
+      <h4>Real-time Beds</h4>  
+      <p>Live bed availability updates.</p>  
+    </div>  
+  </article>  
+  <article>  
+    <span class="feature-icon location">⌖</span>  
+    <div>  
+      <h4>Easy Location</h4>  
+      <p>Find nearby hospitals quickly.</p>  
+    </div>  
+  </article>  
+  <article>  
+    <span class="feature-icon care">♡</span>  
+    <div>  
+      <h4>Quality Care</h4>  
+      <p>Better healthcare decisions for everyone.</p>  
+    </div>  
+  </article>  
+</section>
+
+  </main>    <script src="script.js"></script>  </body>  
+</html>
