@@ -49,10 +49,10 @@ Made while learning and exploring web development and Java.
 ## 📸 Screenshots
 
 ### Login Page
-![QuickCare Login](login.png)
+![QuickCare Login](login.jpg)
 
 ### Hospital Finder
-![QuickCare Hospital Finder](hospital.png)
+![QuickCare Hospital Finder](hospital.jpg)
 
 ### Hospital Map
-![QuickCare Map](map.png)
+![QuickCare Map](map.jpg)
